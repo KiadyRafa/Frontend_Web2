@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../App.css'; // Ajoute les styles nécessaires
+import '../App.css'; 
 
 function UpdatePossessionPage() {
-  const { libelle } = useParams(); // Récupère le libelle depuis l'URL
+  const { libelle } = useParams(); 
   const [possession, setPossession] = useState({ libelle: '', dateFin: '' });
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Récupère les données de la possession via l'API lorsque le composant est monté
+    
     axios.get(`http://localhost:5000/possession/${libelle}`)
       .then(response => {
         if (response.data) {
@@ -29,7 +29,7 @@ function UpdatePossessionPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Envoie les données mises à jour à l'API
+    
     axios.put(`http://localhost:5000/possession/${libelle}`, possession)
       .then(() => {
         navigate('/possession');
@@ -51,7 +51,7 @@ function UpdatePossessionPage() {
             name="libelle"
             value={possession.libelle}
             onChange={handleChange}
-            disabled // Enlève ce disabled si tu veux permettre la modification du libelle
+            disabled 
           />
         </div>
         <div className="form-group">
